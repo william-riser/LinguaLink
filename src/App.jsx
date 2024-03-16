@@ -39,21 +39,6 @@ const App = () => {
     const AppWrapperWithStuff = () => {
       return (
         <AppWrapper isAuth={isAuth} setIsAuth={setIsAuth} setIsInChat={setIsInChat}>
-          {!isInChat ? (
-            <div className="room">
-              <label> Type room name: </label>
-              <input onChange={(e) => setRoom(e.target.value)} />
-              <button
-                onClick={() => {
-                  setIsInChat(true);
-                }}
-              >
-                Enter Chat
-              </button>
-            </div>
-          ) : (
-            <Chat room={room} />
-          )}
         </AppWrapper>
       );
     }
@@ -64,6 +49,23 @@ const App = () => {
         <Routes>
           <Route path="/" element={ <AppWrapperWithStuff/> }/>
           <Route path="/home" element={<Home />} />
+          <Route path="/chat" element={
+            !isInChat ? (
+              <div className="room">
+                <label> Type room name: </label>
+                <input onChange={(e) => setRoom(e.target.value)} />
+                <button
+                  onClick={() => {
+                    setIsInChat(true);
+                  }}
+                >
+                  Enter Chat
+                </button>
+              </div>
+            ) : (
+              <Chat room={room} />
+            )}
+           />
           <Route path="/chatType" element={<ChatType />} />
           <Route path="/videoChat" element={<VideoChat></VideoChat>} />
           <Route path="/aiChat" element={<AIChat />} />

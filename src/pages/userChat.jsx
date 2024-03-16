@@ -37,7 +37,7 @@ export const Chat = ({ room }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+     
     if (newMessage === "") return;
     await addDoc(messagesRef, {
       text: newMessage,

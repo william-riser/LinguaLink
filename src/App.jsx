@@ -1,11 +1,24 @@
 import "./index.css";
-import VideoChat from "./components/videoChat";
+import Home from './pages/home.jsx';
+import ChatType from './pages/chatType.jsx';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 const App = () => {
+
+  
+  
+  
   return (
-    <div className="bg-blue-500">
-      Hello World
-    </div>
+    <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/chatType" element={<ChatType />} />
+            </Routes>
+        </Router>
   );
 };
 

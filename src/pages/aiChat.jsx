@@ -1,52 +1,80 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import.meta.env
+import { useState } from 'react';
 
 
-const AIChat = () => {
-    const [userInput, setUserInput] = useState('');
-  const [chatHistory, setChatHistory] = useState([]);
+async function generateGeminiText(prompt) {
+ // Ensure that API_KEY is provided
+ const apiKey = import.meta.env.VITE_API_KEY;
+ if (!apiKey) {
+   throw new Error('Missing API_KEY in environment variables');
+ }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setChatHistory([...chatHistory, { user: userInput }]);
-    setUserInput(''); 
 
-    try {
-      const response = await axios.post('http://localhost:3000/generate-response', {
-        prompt: userInput
-      }, {
-        headers: {
-          'Authorization': 'Bearer YOUR_GEMINI_API_KEY'
-        }
-      });
+ const genAI = new GoogleGenerativeAI(apiKey);
+ const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
 
-      setChatHistory([...chatHistory, { chatbot: response.data.text }]);
-    } catch (error) {
-      // Handle API errors
-    }
-  };
 
-  return (
-    <div className="container mx-auto p-4"> 
-      <h1 className="text-2xl font-bold mb-4">Gemini Chatbot</h1>
-      <div className="chat-window p-4 rounded-lg shadow-md"> 
-        {chatHistory.map((message, index) => (
-          <p key={index} className={message.user ? 'text-right' : ''}>
-            {message.user || message.chatbot}
-          </p>
-        ))}
-      </div>
-      <form onSubmit={handleSubmit} className="mt-4">
-        <input
-          type="text"
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-          className="w-full p-2 rounded-md border-2 border-gray-300"
-        />
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md ml-2">Send</button>
-      </form>
-    </div>
-    );
+ try {
+   const result = await model.generateContent(prompt);
+   const response = await result.response;
+   const text = response.text();
+
+
+   return { text };
+ } catch (error) {
+   if (error instanceof Error) {
+     throw new Error(`Error generating text: ${error.message}`);
+   } else {
+     throw new Error('Unexpected error generating text');
+   }
+ }
 }
-
-export default AIChat;
+const AIChat = () => {
+    const [responseText, setResponseText] = useState('');
+    const [chatHistory, setChatHistory] = useState([]);
+  
+    const handleGenerateClick = () => {
+      const prompt = document.getElementById('textInput').value;
+      document.getElementById('textInput').value = '';
+  
+      const newChatHistory = [...chatHistory, { type: 'user', text: prompt }]; 
+      setChatHistory(newChatHistory); 
+  
+      const conversationHistory = newChatHistory.map((entry) => 
+        `${entry.type === 'user' ? 'User:' : 'AI:'} ${entry.text}`
+      ).join('\n'); 
+  
+      generateGeminiText(conversationHistory) 
+        .then(({ text }) => {
+          setChatHistory([...newChatHistory, { type: 'ai', text }]); 
+        })
+        .catch((error) => {
+          setResponseText(`Error: ${error.message}`); 
+        });
+    };
+  
+    return (
+      <div className="container mx-auto p-4">
+        <h1>AI Chat</h1>
+        <div className="chat-log mt-4 p-4 border rounded-md shadow-md">
+          {chatHistory.map((entry, index) => (
+            <div key={index} className={`my-2 ${entry.type === 'user' ? 'text-right' : ''}`}>
+              <p className={`bg-${entry.type === 'user' ? 'blue-200' : 'gray-200'} inline-block p-2 rounded-md`}>
+                {entry.text}
+              </p>
+            </div>
+          ))}
+        </div>
+        <div className="flex items-end mt-4">
+          <input type="text" id="textInput" className="flex-1 mr-2 p-2 border rounded-md" />
+          <button id="generateButton" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleGenerateClick}>
+            Generate
+          </button>
+        </div>
+      </div>
+    );
+  };
+  
+  
+  export default AIChat;

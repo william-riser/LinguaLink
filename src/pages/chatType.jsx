@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const ChatType = () => {
     const [searchParams] = useSearchParams(); 
     const searchTerm = searchParams.get("language");
+    const navigate = useNavigate();
 
 
     return (
@@ -12,6 +13,7 @@ const ChatType = () => {
             <div className="flex gap-5">  
                 <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-xl shadow-md hover:shadow-lg"
+                    onClick={() => navigate("/aiChat")}
                 >
                     AI Chat
                 </button>

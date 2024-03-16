@@ -2,6 +2,7 @@ import "./index.css";
 import Home from './pages/home.jsx';
 import ChatType from './pages/chatType.jsx';
 import VideoChat from "./components/videoChat";
+import AIChat from "./pages/aiChat.jsx";
 import {
   BrowserRouter as Router,
   Routes,
@@ -19,6 +20,7 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/chatType" element={<ChatType />} />
                 <Route path="/videoChat" element={<VideoChat></VideoChat>} />
+                <Route path="/aiChat" element={<AIChat />} />
             </Routes>
         </Router>
   );

@@ -1,4 +1,4 @@
-//import {auth, provider} from "../firebase/videoChat.jsx";
+import {auth, provider} from "";
 import {signInWithPopup} from 'firebase/auth'
 
 export const Auth = () => {

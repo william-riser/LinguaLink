@@ -61,15 +61,22 @@ const AIChat = () => {
   
     return (
       <div className="container mx-auto p-4">
+          <style>
+          {`
+          .message-wrapper:first-child { 
+            display: none; 
+          }
+          `}
+        </style>
         <h1>AI Chat</h1>
         <div className="chat-log mt-4 p-4 border rounded-md shadow-md">
-          {chatHistory.map((entry, index) => (
-            <div key={index} className={`my-2 ${entry.type === 'user' ? 'text-right' : ''}`}>
-              <p className={`bg-${entry.type === 'user' ? 'blue-200' : 'gray-200'} inline-block p-2 rounded-md`}>
-                {entry.text}
-              </p>
-            </div>
-          ))}
+              {chatHistory.map((entry, index) => (
+        <div key={index} className={`my-2 ${entry.type === 'user' ? 'text-right' : ''} message-wrapper`}> 
+          <p className={`bg-${entry.type === 'user' ? 'blue-200' : 'gray-200'} inline-block p-2 rounded-md`}>
+            {entry.text}
+          </p>
+        </div>
+      ))}
         </div>
         <div className="flex items-end mt-4">
           <input type="text" id="textInput" className="flex-1 mr-2 p-2 border rounded-md" />

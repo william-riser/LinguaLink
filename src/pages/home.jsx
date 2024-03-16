@@ -1,6 +1,5 @@
 import React from 'react';
 import SearchBar from '../components/searchBar';
-import Auth from '../components/Auth';
 
 const Home = () => {
     

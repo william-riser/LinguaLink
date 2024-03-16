@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, setDoc, onSnapshot, getDoc, updateDoc, addDoc } from "firebase/firestore";
 import {getAuth, GoogleAuthProvider} from 'firebase/auth';
-import { firebaseConfig } from "../../firebase";
+import { firebaseConfig } from "../../firebase-config";
 
 // const app = initializeApp(firebaseConfig);
 // export const auth = getAuth(app);

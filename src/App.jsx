@@ -1,6 +1,7 @@
 import "./index.css";
 import Home from './pages/home.jsx';
 import ChatType from './pages/chatType.jsx';
+import VideoChat from "./components/videoChat";
 import {
   BrowserRouter as Router,
   Routes,
@@ -17,6 +18,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/chatType" element={<ChatType />} />
+                <Route path="/videoChat" element={<VideoChat></VideoChat>} />
             </Routes>
         </Router>
   );

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, setDoc, onSnapshot, getDoc, updateDoc, addDoc } from "firebase/firestore";
+import {getAuth, GoogleAuthProvider} from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAl0Wx_cHz6AYYFo4qDGoU7J5Rk5AmY9N8",
@@ -11,6 +12,10 @@ const firebaseConfig = {
   appId: "1:785919432816:web:af8d77214ed82af0313cb5",
   measurementId: "G-CTK115PQL0",
 };
+
+// const app = initializeApp(firebaseConfig);
+// export const auth = getAuth(app);
+// export const provider = new GoogleAuthProvider();
 
 const VideoChat = () => {
   const [localStream, setLocalStream] = useState(null);

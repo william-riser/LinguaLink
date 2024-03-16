@@ -13,7 +13,7 @@ const ChatType = () => {
             <div className="flex gap-5">  
                 <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-xl shadow-md hover:shadow-lg"
-                    onClick={() => navigate("/aiChat")}
+                    onClick={() => navigate(`/aiChat?language=${searchTerm}`)}
                 >
                     AI Chat
                 </button>

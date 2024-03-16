@@ -1,10 +1,10 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import.meta.env
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 
 async function generateGeminiText(prompt) {
- // Ensure that API_KEY is provided
  const apiKey = import.meta.env.VITE_API_KEY;
  if (!apiKey) {
    throw new Error('Missing API_KEY in environment variables');
@@ -31,8 +31,13 @@ async function generateGeminiText(prompt) {
  }
 }
 const AIChat = () => {
-    const [responseText, setResponseText] = useState('');
-    const [chatHistory, setChatHistory] = useState([]);
+  const [searchParams] = useSearchParams();
+  const language = searchParams.get('language');
+  const [responseText, setResponseText] = useState('');
+  const [chatHistory, setChatHistory] = useState([
+    { type: 'user', text: `You are my friend who speaks ${language}` } // Initial message
+  ]);
+
   
     const handleGenerateClick = () => {
       const prompt = document.getElementById('textInput').value;

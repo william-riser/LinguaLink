@@ -153,7 +153,7 @@ const VideoChat = () => {
   };
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-6 flex-col ml-5 rounded-xl bg-opacity-80"> 
       <h1 className="text-3xl font-bold mb-2">Video Chat</h1>
       <button
           onClick={handleWebcamButtonClick}
@@ -177,7 +177,7 @@ const VideoChat = () => {
             autoPlay
             playsInline
             ref={webcamRef}
-            className="z-10 absolute top-0 right-4 w-40 h-40"
+            className="rounded-xl z-10 absolute top-0 right-4 w-40 h-40 opacity-100"
           ></video>
         </div>
         <div className="relative">
@@ -186,7 +186,7 @@ const VideoChat = () => {
             autoPlay
             playsInline
             ref={remoteRef}
-            className="z-0 w-full rounded-sm"
+            className=" z-0 w-full rounded-xl"
           ></video>
         </div>
         

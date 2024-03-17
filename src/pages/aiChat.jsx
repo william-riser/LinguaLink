@@ -82,6 +82,7 @@ const AIChat = () => {
 
   return (
     <div className="container mx-auto p-4 flex flex-col items-center">
+      <h1 className="z-10 pt-10 text-3xl font-bold mb-2 text-white drop-shadow-xl">AI Chat</h1>
       <div className="absolute inset-0 z-0 bg-cover bg-center flex flex-col items-center pt-28 h-screen" style={{ backgroundImage: "url(/aiBG.png)" }}>
         <style>
           {`
@@ -99,10 +100,7 @@ const AIChat = () => {
               max-height: 80vh; // Optional: You can set a max height
             }
             .user-message {
-              background-color: #add8e6; // Set a background color for user messages
-              padding: 10px;
-              margin: 10px;
-              border-radius: 15px; // Rounded corners for messages
+   
             }
             .ai-message {
               background-color: #d3d3d3; // Set a background color for AI messages
@@ -112,15 +110,15 @@ const AIChat = () => {
             }
           `}
         </style>
-        <div className="bg-white w-2/6 flex flex-col rounded-xl"> {/* Modified line */}
+        <div className="bg-white w-2/6 flex flex-col rounded-xl opacity-80"> {/* Modified line */}
           <div className="rounded-xl chat-log  p-4 border shadow-md bg-white min-h-96 max-h-96 overflow-scroll flex flex-col">
             {chatHistory.map((entry, index) => (
               <div
                 key={index}
-                className={`my-2 ${entry.type === "user" ? "items-end text-center bg-green-200 max-w-40 rounded-md" : "bg-green-600 max-w-40 rounded-md text-center"} message-wrapper`}
+                className={`my-2 ${entry.type === "user" ? " text-white rounded-md" : "bg-green-500 max-w-40 rounded-md text-center"} message-wrapper flex ${entry.type === "user" ? "justify-end" : "justify-start"}`}
               >
                 <p
-                  className={`bg-${entry.type === "user" ? "blue-200" : "gray-200"} inline-block p-2 rounded-md`}
+                  className={`${entry.type === "user" ? "bg-blue-500 " : "text-gray-200 text-left"} inline-block p-2 rounded-xl `}
                 >
                   {entry.text}
                 </p>

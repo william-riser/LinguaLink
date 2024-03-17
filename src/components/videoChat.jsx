@@ -26,6 +26,7 @@ const VideoChat = () => {
   let webcamRef = useRef(null);
   const remoteRef = useRef(null);
   const db = getFirestore(initializeApp(firebaseConfig)); // Initialize db here // maybe use useEffect
+  const reportRef = collection(db, "reports");
 
   useEffect(() => {
     const servers = {
@@ -173,6 +174,17 @@ const VideoChat = () => {
     }
   }
 
+  const handleReport = async () => {
+    // Report the user
+    addDoc(reportRef, {
+      reportedBy: "user1",
+      reportType: "inappropriate",
+      reportedUser: "user2",
+      reportDate: new Date(),
+    });
+  }
+
+
   return (
     <div className="container mx-auto p-6 flex-col ml-5 rounded-xl bg-opacity-80"> 
       <h1 className="text-3xl font-bold mb-2 text-gray-500">Video Chat</h1>
@@ -230,8 +242,11 @@ const VideoChat = () => {
       >
         Answer
       </button>
-      <button  className="bg-red-500 hover:bg-red-600 text-white p-3 rounded-md" onClick={handleHangup}>
+      <button  className="bg-red-500 hover:bg-red-600 mx-2 text-white p-3 rounded-md" onClick={handleHangup}>
         Hang up 
+      </button>
+      <button className="bg-red-500 hover:bg-red-600 mx-2 text-white p-3 rounded-md" onClick={handleReport}>
+        Report
       </button>
 
     </div>

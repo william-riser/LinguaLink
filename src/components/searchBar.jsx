@@ -45,6 +45,7 @@ const SearchBar = ({ languages }) => {
           border: '1px solid #d1d5db',
           boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
           fontSize: '18px',
+          fontFamily: 'Judson, serif', 
         }}
         placeholder="Search for languages..."
         value={searchTerm}
@@ -53,7 +54,13 @@ const SearchBar = ({ languages }) => {
       {dropdownVisible && matchedLanguages.length > 0 && (
         <div
           className="absolute top-full left-0 z-10 w-full bg-white shadow-lg 
-                        rounded-md border border-gray-300 overflow-hidden"
+                        rounded-xl border border-gray-300 overflow-hidden"
+          style={{ fontFamily: 'Judson, serif' ,
+          width: '80%', // Adjust the width as needed
+          left: '10%', // Center the dropdown relative to the search bar
+          right: '7.5%',
+          }} // Apply Judson font to the entire dropdown
+          
         >
           {matchedLanguages.slice(0,5).map((language, index) => (
             <div

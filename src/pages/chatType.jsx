@@ -14,10 +14,10 @@ const ChatType = () => {
         fontFamily: "Judson, serif"
       }}
     >
-      <div className="mt-8 mb-16"> 
+      <div className="mt-20 mb-16"> 
         <h1 className="text-8xl text-gray-600" style={{ fontFamily: "Judson, serif" }}>Learn {searchTerm}</h1>
       </div>
-      <div className="flex gap-12 mt-10">
+      <div className="flex gap-12 mt-2">
         <button
           className="bg-yellow-100 hover:bg-yellow-200 text-gray-600 font-bold py-8 px-16 rounded-xl text-3xl shadow-md hover:shadow-lg outline outline-green-700" 
           onClick={() => navigate(`/aiChat?language=${searchTerm}`)}

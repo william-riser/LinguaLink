@@ -24,9 +24,9 @@ const App = () => {
         isAuth={isAuth}
         setIsAuth={setIsAuth}
         setIsInChat={setIsInChat}
+        className="flex items-center justify-center"
       >
         <Auth setIsAuth={setIsAuth} />
-        <button onClick={() => {setIsAuth(''); cookies.remove("auth-token")}}>Log out</button>
       </AppWrapper>
     );
   }

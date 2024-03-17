@@ -12,7 +12,7 @@ const ChatType = () => {
       style={{ backgroundImage: "url(/chatType.png)" }}
     >
       <div className="mt-10 mb-32"> 
-        <h1 className="text-4xl font-bold text-green-700">Learn Français</h1>
+        <h1 className="text-4xl font-bold text-green-700">Learn {searchTerm}</h1>
       </div>
       <div className="flex gap-5 mt-10">
         <button

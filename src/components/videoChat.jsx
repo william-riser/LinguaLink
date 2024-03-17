@@ -153,48 +153,63 @@ const VideoChat = () => {
   };
 
   return (
-    <div>
-      <h2>1. Start your Webcam</h2>
-      <div className="videos">
-        <span>
-          <h3>Local Stream</h3>
+    <div className="container mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-2">Video Chat</h1>
+      <button
+          onClick={handleWebcamButtonClick}
+          disabled={!!localStream}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 mt-4"
+        >
+          Start webcam
+        </button>
+        <button
+          onClick={handleCallButtonClick}
+          disabled={!localStream}
+          className="bg-green-500 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-green-300"
+        >
+          Create Call (offer)
+        </button>
+      <section className="webcam-section mb-8">
+        
+        <div className="relative">
           <video
             id="webcamVideo"
             autoPlay
             playsInline
             ref={webcamRef}
-          ></video>{" "}
-          {/* Corrected ref */}
-        </span>
-        <span>
-          <h3>Remote Stream</h3>
+            className="z-10 absolute top-0 right-4 w-40 h-40"
+          ></video>
+        </div>
+        <div className="relative">
           <video
             id="remoteVideo"
             autoPlay
             playsInline
             ref={remoteRef}
-          ></video>{" "}
-          {/* Corrected ref */}
-        </span>
-      </div>
-      <button onClick={handleWebcamButtonClick} disabled={!!localStream}>
-        Start webcam
-      </button>
+            className="z-0 w-full rounded-sm"
+          ></video>
+        </div>
+        
+      </section>
 
-      <h2>2. Create a new Call</h2>
-      <button onClick={handleCallButtonClick} disabled={!localStream}>
-        Create Call (offer)
-      </button>
+      <section className="call-actions mb-8">
+        
+      </section>
 
-      <h2>3. Join a Call</h2>
-      <p>Answer the call from a different browser window or device</p>
-      <input value={callId} onChange={(e) => setCallId(e.target.value)} />
-      <button onClick={handleAnswerButtonClick} disabled={!callId}>
+      <h2 className="text-xl font-bold mb-2">Call code</h2>
+      <input
+        value={callId}
+        onChange={(e) => setCallId(e.target.value)}
+        className="border border-gray-300 rounded-md p-2 mt-2"
+      />
+      <button
+        onClick={handleAnswerButtonClick}
+        disabled={!callId}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 mt-2"
+      >
         Answer
       </button>
 
-      <h2>4. Hangup</h2>
-      <button disabled>Hangup</button>
     </div>
   );
 };

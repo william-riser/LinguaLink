@@ -11,26 +11,26 @@ const ChatType = () => {
       className="bg-cover bg-no-repeat bg-center min-h-screen flex flex-col justify-start items-center" 
       style={{ 
         backgroundImage: "url(/chatType.png)",
-        fontFamily: "Judson, serif" // Apply Judson font family inline
+        fontFamily: "Judson, serif"
       }}
     >
-      <div className="mt-10 mb-32"> 
-        <h1 className="text-8xl font-bold text-gray-600" style={{ fontFamily: "Judson, serif" }}>Learn French</h1> {/* Apply Judson font family inline */}
+      <div className="mt-8 mb-16"> 
+        <h1 className="text-8xl text-gray-600" style={{ fontFamily: "Judson, serif" }}>Learn {searchTerm}</h1>
       </div>
-      <div className="flex gap-5 mt-10">
+      <div className="flex gap-12 mt-10">
         <button
-          className="bg-green-200 hover:bg-green-400 text-gray-600 font-bold py-4 px-8 rounded-lg text-2xl shadow-md hover:shadow-lg w-72 h-72 outline outline-green-700" // Tailwind classes added
+          className="bg-yellow-100 hover:bg-yellow-200 text-gray-600 font-bold py-8 px-16 rounded-xl text-3xl shadow-md hover:shadow-lg outline outline-green-700" 
           onClick={() => navigate(`/aiChat?language=${searchTerm}`)}
-          style={{ fontFamily: "Judson, serif" }} // Apply Judson font family inline
+          style={{ width: "385px", height: "331px" }} // Adjust width and height
         >
-          AI Chat
+          Chat with AI
         </button>
         <button
-          className="bg-green-200 hover:bg-green-400 text-gray-600 font-bold py-4 px-8 rounded-lg text-2xl shadow-md hover:shadow-lg w-72 h-72 outline outline-green-700" // Tailwind classes added
+          className="bg-yellow-100 hover:bg-yellow-200 text-gray-600 font-bold py-8 px-16 rounded-xl text-3xl shadow-md hover:shadow-lg outline outline-green-700" 
           onClick={() => navigate(`/userToUser?language=${searchTerm}`)}
-          style={{ fontFamily: "Judson, serif" }} // Apply Judson font family inline
+          style={{ width: "385px", height: "331px" }} // Adjust width and height
         >
-          Video Chat
+          Chat with People
         </button>
       </div>
     </div>

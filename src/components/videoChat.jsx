@@ -1,8 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, setDoc, onSnapshot, getDoc, updateDoc, addDoc } from "firebase/firestore";
-import {getAuth, GoogleAuthProvider} from 'firebase/auth';
-import { firebaseConfig } from "../../firebase";
+import {
+  getFirestore,
+  collection,
+  doc,
+  setDoc,
+  onSnapshot,
+  getDoc,
+  updateDoc,
+  addDoc,
+} from "firebase/firestore";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { firebaseConfig } from "../../firebase-config";
 
 // const app = initializeApp(firebaseConfig);
 // export const auth = getAuth(app);
@@ -21,7 +30,10 @@ const VideoChat = () => {
     const servers = {
       iceServers: [
         {
-          urls: ["stun:stun1.l.google.com:19302", "stun:stun2.l.google.com:19302"],
+          urls: [
+            "stun:stun1.l.google.com:19302",
+            "stun:stun2.l.google.com:19302",
+          ],
         },
       ],
       iceCandidatePoolSize: 10,
@@ -52,8 +64,8 @@ const VideoChat = () => {
     pc.ontrack = (event) => {
       event.streams[0].getTracks().forEach((track) => {
         if (remoteRef.current) {
-          remoteRef.current.srcObject = event.streams[0]; 
-        }       
+          remoteRef.current.srcObject = event.streams[0];
+        }
         remoteStream.addTrack(track);
       });
     };
@@ -61,9 +73,19 @@ const VideoChat = () => {
 
   const handleCallButtonClick = async () => {
     const callDocRef = doc(collection(db, "calls")); // Create ref with auto-ID
-  const callDoc = doc(db, "calls", callDocRef.id);
-  const offerCandidates = collection(db, "calls", callDoc.id, "offerCandidates"); 
-  const answerCandidates = collection(db, "calls", callDoc.id, "answerCandidates"); 
+    const callDoc = doc(db, "calls", callDocRef.id);
+    const offerCandidates = collection(
+      db,
+      "calls",
+      callDoc.id,
+      "offerCandidates",
+    );
+    const answerCandidates = collection(
+      db,
+      "calls",
+      callDoc.id,
+      "answerCandidates",
+    );
 
     setCallId(callDocRef.id);
 
@@ -93,7 +115,12 @@ const VideoChat = () => {
   const handleAnswerButtonClick = async () => {
     const callDoc = doc(db, "calls", callId);
     const offerCandidates = collection(db, "calls", callId, "offerCandidates");
-    const answerCandidates = collection(db, "calls", callId, "answerCandidates");
+    const answerCandidates = collection(
+      db,
+      "calls",
+      callId,
+      "answerCandidates",
+    );
 
     pc.onicecandidate = (event) => {
       event.candidate && addDoc(answerCandidates, event.candidate.toJSON());
@@ -131,11 +158,23 @@ const VideoChat = () => {
       <div className="videos">
         <span>
           <h3>Local Stream</h3>
-          <video id="webcamVideo" autoPlay playsInline ref={webcamRef}></video> {/* Corrected ref */}
+          <video
+            id="webcamVideo"
+            autoPlay
+            playsInline
+            ref={webcamRef}
+          ></video>{" "}
+          {/* Corrected ref */}
         </span>
         <span>
           <h3>Remote Stream</h3>
-          <video id="remoteVideo" autoPlay playsInline ref={remoteRef}></video> {/* Corrected ref */}
+          <video
+            id="remoteVideo"
+            autoPlay
+            playsInline
+            ref={remoteRef}
+          ></video>{" "}
+          {/* Corrected ref */}
         </span>
       </div>
       <button onClick={handleWebcamButtonClick} disabled={!!localStream}>

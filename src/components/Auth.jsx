@@ -34,7 +34,7 @@ export const Auth = ({ setIsAuth }) => {
   };
   return (
     <div>
-      <button className="bg-green-200 rounded-md p-2 m-4" style={{ fontFamily: "Judson, serif" }} onClick={signInWithGoogle}> Sign In With Google </button>
+      <button className="bg-green-100 hover:bg-green-200 rounded-md p-5 m-4 text-lg font-bold outline outline-green-600" style={{ fontFamily: "Judson, serif" }} onClick={signInWithGoogle}> Sign Up With Google </button>
     </div>
   );
 };

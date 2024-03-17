@@ -54,21 +54,18 @@ const Home = () => {
     "Kinyarwanda",
   ];
   return (
-<div className="overflow-hidden">
-      <div className="h-screen flex flex-col">  {/* Changed to flex-col */}
+    <div className="overflow-hidden">
+      <div className="h-screen flex flex-col">
         <div className="absolute inset-0 z-0 bg-cover bg-center" style={{ backgroundImage: "url(/BabelBrellaBackground.png)" }}></div>
-        <div className="relative z-10 container mx-auto w-1/3 bg-gray-100 rounded-lg p-8 mb-10 flex flex-col justify-center mt-20 shadow-2xl"> 
-          <div className="text-center lg:text-left">
-            <div className="text-4xl font-bold text-gray-800 mb-8">BabelBrella</div>
-            <div className="text-xl text-gray-800 mb-10">Language Learning Made Easy</div>
-            <SearchBar languages={languages} />
-          </div>
-          <div className="flex-grow-2 bg-gray-100"> {/* Added empty div */} </div> 
+        <div className="text-center lg:text-left relative z-10 mx-auto w-1/3 mt-20"> {/* Adjusted classes for direct content styling */}
+          {/* ?<div className="text-4xl font-bold mb-8" style={{ fontFamily: 'Judson, serif', color: '#504E4E' }}>BabelBrella</div> */}
+          <div className="text-4xl mb-6" style={{ fontFamily: 'Judson, serif', color: '#504E4E' }}>Language Learning Made Easy</div>
+          <SearchBar languages={languages} />
+        </div>
       </div>
     </div>
-
-</div>
   );
+  
 };
 
 export default Home;

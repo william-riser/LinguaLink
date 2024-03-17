@@ -34,7 +34,7 @@ const SearchBar = ({ languages }) => {
         className="w-full py-3 px-6 rounded-full border border-gray-300 
                    focus:outline-none focus:ring-2 focus:ring-blue-500 
                    text-lg font-medium shadow-md"
-        placeholder="Search for a language..."
+        placeholder="Search for languages..."
         value={searchTerm}
         onChange={handleInputChange}
       />

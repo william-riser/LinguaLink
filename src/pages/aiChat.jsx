@@ -2,6 +2,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import.meta.env;
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useEffect } from 'react';
 
 async function generateGeminiText(prompt) {
   const apiKey = import.meta.env.VITE_API_KEY;
@@ -56,14 +57,60 @@ const AIChat = () => {
       });
   };
 
+  useEffect(() => {
+    // Save the original styles to restore them later
+    const originalStyle = {
+      backgroundImage: document.body.style.backgroundImage,
+      backgroundSize: document.body.style.backgroundSize,
+      backgroundRepeat: document.body.style.backgroundRepeat,
+    };
+
+    // Set your background image on the body element
+    document.body.style.backgroundImage = "url('/BabelBrellachat.png')";
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundRepeat = 'no-repeat';
+
+    // When the component unmounts, restore the original styles
+    return () => {
+      document.body.style.backgroundImage = originalStyle.backgroundImage;
+      document.body.style.backgroundSize = originalStyle.backgroundSize;
+      document.body.style.backgroundRepeat = originalStyle.backgroundRepeat;
+    };
+  }, []);
+
+
+
   return (
     <div className="container mx-auto p-4">
-      <style>
+     <style>
         {`
           .message-wrapper:first-child { 
             display: none; 
           }
-          `}
+          .chat-log {
+            width: 50%; // Set the width to 50% of its parent
+            margin: 0 auto; // Center it horizontally
+            padding: 20px; // Add some padding inside the box
+            background: white; // Set the background color to white
+            border-radius: 20px; // Rounded corners
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Optional: add some shadow to make it stand out
+            overflow: hidden; // In case the content overflows, it will be hidden
+            max-height: 80vh; // Optional: You can set a max height
+            overflow-y: auto; // If the content is too long, it will be scrollable
+          }
+          .user-message {
+            background-color: #add8e6; // Set a background color for user messages
+            padding: 10px;
+            margin: 10px;
+            border-radius: 15px; // Rounded corners for messages
+          }
+          .ai-message {
+            background-color: #d3d3d3; // Set a background color for AI messages
+            padding: 10px;
+            margin: 10px;
+            border-radius: 15px; // Rounded corners for messages
+          }
+        `}
       </style>
       <h1>AI Chat</h1>
       <div className="chat-log mt-4 p-4 border rounded-md shadow-md">

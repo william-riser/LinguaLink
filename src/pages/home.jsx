@@ -55,18 +55,47 @@ const Home = () => {
   ];
   return (
     <div className="overflow-hidden">
-    <div className="h-screen flex flex-col">
-      <div className="absolute inset-0 z-0 bg-cover bg-center" style={{ backgroundImage: "url(/BabelBrellaBackground.png)" }}></div>
-      <div className="text-center lg:text-left relative z-10 mx-auto w-1/3 mt-16">
-        {/* Add marginBottom to the inline style here */}
-        <div style={{ textAlign: 'center', fontFamily: 'Judson, serif', color: '#504E4E', fontSize: '40px', marginBottom: '20px' }}>
-          LinguaLink
+      {/* Top Banner */}
+      <div style={{
+        textAlign: 'center',
+        padding: '15px', // Adjust padding as needed
+        backgroundColor: '#ffffff', // Choose a background color that fits your design
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Optional shadow for depth
+        fontSize: '24px', // Adjust font size as needed
+        fontFamily: 'Judson, serif',
+        fontWeight: 'bold',
+        color: '#504E4E',
+        position: 'relative', // Position relative or another positioning except 'static'
+        zIndex: 10 // Ensure this is greater than the background's z-index
+      }}>
+        LinguaLink
+      </div>
+      
+      <div className="h-screen flex flex-col">
+      <div className="absolute inset-0 z-0 bg-cover bg-center" 
+     style={{ 
+       backgroundImage: "url('/BabelBrellaBackground2.svg')", 
+       backgroundSize: 'cover', 
+       backgroundRepeat: 'no-repeat', 
+       backgroundPosition: 'center'
+     }}>
+</div>
+
+        <div className="text-center lg:text-left relative z-10 mx-auto w-1/3 mt-8">
+          <div style={{ 
+            textAlign: 'center', 
+            fontFamily: 'Judson, serif', 
+            color: '#504E4E', 
+            fontSize: '35px', 
+            fontWeight: 'bold',
+            marginBottom: '20px' 
+            }}>
+            Language Learning Made Easy
+          </div>
+          <SearchBar languages={languages} />
         </div>
-        <SearchBar languages={languages} />
       </div>
     </div>
-  </div>
-  
   );
   
 };

@@ -53,11 +53,21 @@ const Home = () => {
     "Xhosa",
     "Kinyarwanda",
   ];
-
   return (
-    <div>
-      <SearchBar languages={languages} />
+<div className="overflow-hidden">
+      <div className="h-screen flex flex-col">  {/* Changed to flex-col */}
+        <div className="absolute inset-0 z-0 bg-cover bg-center" style={{ backgroundImage: "url(/BabelBrellaBackground.png)" }}></div>
+        <div className="relative z-10 container mx-auto w-1/3 bg-gray-200 rounded-lg p-8 mb-10 flex flex-col justify-center mt-20 shadow-2xl"> 
+          <div className="text-center lg:text-left">
+            <div className="text-4xl font-bold text-gray-800 mb-8">BabelBrella</div>
+            <div className="text-xl text-gray-800 mb-10">Language Learning Made Easy</div>
+            <SearchBar languages={languages} />
+          </div>
+          <div className="flex-grow-2 bg-gray-100"> {/* Added empty div */} </div> 
+      </div>
     </div>
+
+</div>
   );
 };
 

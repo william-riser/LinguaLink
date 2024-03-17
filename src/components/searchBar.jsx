@@ -43,7 +43,7 @@ const SearchBar = ({ languages }) => {
           className="absolute top-full left-0 z-10 w-full bg-white shadow-lg 
                         rounded-md border border-gray-300 overflow-hidden"
         >
-          {matchedLanguages.map((language, index) => (
+          {matchedLanguages.slice(0,5).map((language, index) => (
             <div
               key={index}
               className="py-2 px-4 hover:bg-gray-100 cursor-pointer"

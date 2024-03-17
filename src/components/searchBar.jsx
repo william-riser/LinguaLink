@@ -28,12 +28,24 @@ const SearchBar = ({ languages }) => {
   };
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full flex justify-center">
       <input
         type="text"
-        className="w-full py-3 px-6 rounded-full border border-gray-300 
-                   focus:outline-none focus:ring-2 focus:ring-blue-500 
-                   text-lg font-medium shadow-md"
+        style={{
+          width: '85%',
+          margin: '0 auto',
+          display: 'block',
+          padding: '12px 24px',
+          paddingLeft: '48px', // Increase padding-left to avoid text overlapping the icon
+          backgroundImage: 'url(/Search111.png)',
+          backgroundPosition: '5px center', // Adjust as necessary
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '48px 48px',
+          borderRadius: '9999px',
+          border: '1px solid #d1d5db',
+          boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+          fontSize: '18px',
+        }}
         placeholder="Search for languages..."
         value={searchTerm}
         onChange={handleInputChange}

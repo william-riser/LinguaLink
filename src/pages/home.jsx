@@ -55,15 +55,18 @@ const Home = () => {
   ];
   return (
     <div className="overflow-hidden">
-      <div className="h-screen flex flex-col">
-        <div className="absolute inset-0 z-0 bg-cover bg-center" style={{ backgroundImage: "url(/BabelBrellaBackground.png)" }}></div>
-        <div className="text-center lg:text-left relative z-10 mx-auto w-1/3 mt-20"> {/* Adjusted classes for direct content styling */}
-          {/* ?<div className="text-4xl font-bold mb-8" style={{ fontFamily: 'Judson, serif', color: '#504E4E' }}>BabelBrella</div> */}
-          <div className="text-4xl mb-6" style={{ fontFamily: 'Judson, serif', color: '#504E4E' }}>Language Learning Made Easy</div>
-          <SearchBar languages={languages} />
+    <div className="h-screen flex flex-col">
+      <div className="absolute inset-0 z-0 bg-cover bg-center" style={{ backgroundImage: "url(/BabelBrellaBackground.png)" }}></div>
+      <div className="text-center lg:text-left relative z-10 mx-auto w-1/3 mt-16">
+        {/* Add marginBottom to the inline style here */}
+        <div style={{ textAlign: 'center', fontFamily: 'Judson, serif', color: '#504E4E', fontSize: '40px', marginBottom: '20px' }}>
+          LinguaLink
         </div>
+        <SearchBar languages={languages} />
       </div>
     </div>
+  </div>
+  
   );
   
 };

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = ({ languages }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -8,19 +7,17 @@ const SearchBar = ({ languages }) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const navigate = useNavigate();
 
-
   const handleInputChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
 
     // Filter languages based on the search term
     const matched = languages.filter((lang) =>
-      lang.toLowerCase().includes(term.toLowerCase())
+      lang.toLowerCase().includes(term.toLowerCase()),
     );
     setMatchedLanguages(matched);
     setDropdownVisible(true);
   };
-
 
   const handleLanguageSelection = (language) => {
     setSearchTerm(language);
@@ -36,14 +33,16 @@ const SearchBar = ({ languages }) => {
         type="text"
         className="w-full py-3 px-6 rounded-full border border-gray-300 
                    focus:outline-none focus:ring-2 focus:ring-blue-500 
-                   text-lg font-medium shadow-md" 
+                   text-lg font-medium shadow-md"
         placeholder="Search for a language..."
         value={searchTerm}
         onChange={handleInputChange}
       />
       {dropdownVisible && matchedLanguages.length > 0 && (
-        <div className="absolute top-full left-0 z-10 w-full bg-white shadow-lg 
-                        rounded-md border border-gray-300 overflow-hidden"> 
+        <div
+          className="absolute top-full left-0 z-10 w-full bg-white shadow-lg 
+                        rounded-md border border-gray-300 overflow-hidden"
+        >
           {matchedLanguages.map((language, index) => (
             <div
               key={index}

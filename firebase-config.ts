@@ -3,7 +3,6 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "@firebase/firestore";
 
-
 // const firebaseConfig = {
 //   apiKey: "AIzaSyAobQvUsOws4rXjh-odRpdZch7nnYpqt1A",
 //   authDomain: "chatapp-9b234.firebaseapp.com",
@@ -21,7 +20,7 @@ export const firebaseConfig = {
   messagingSenderId: "785919432816",
   appId: "1:785919432816:web:af8d77214ed82af0313cb5",
   measurementId: "G-CTK115PQL0",
-}
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

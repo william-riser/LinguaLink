@@ -21,7 +21,7 @@ export const Chat = ({ room }) => {
     const queryMessages = query(
       messagesRef,
       where("room", "==", room),
-      orderBy("createdAt")
+      orderBy("createdAt"),
     );
     const unsuscribe = onSnapshot(queryMessages, (snapshot) => {
       let messages = [];

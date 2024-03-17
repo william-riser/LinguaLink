@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { db, auth } from "";
+import { db, auth } from "../../firebase-config.ts";
 import {
   collection,
   addDoc,
@@ -21,7 +21,7 @@ export const Chat = ({ room }) => {
     const queryMessages = query(
       messagesRef,
       where("room", "==", room),
-      orderBy("createdAt")
+      orderBy("createdAt"),
     );
     const unsuscribe = onSnapshot(queryMessages, (snapshot) => {
       let messages = [];
@@ -37,7 +37,7 @@ export const Chat = ({ room }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-     
+
     if (newMessage === "") return;
     await addDoc(messagesRef, {
       text: newMessage,

@@ -9,6 +9,7 @@ import {
   getDoc,
   updateDoc,
   addDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { firebaseConfig } from "../../firebase-config";
@@ -22,7 +23,7 @@ const VideoChat = () => {
   const [remoteStream, setRemoteStream] = useState(null);
   const [callId, setCallId] = useState("");
   const [pc, setPc] = useState(null);
-  const webcamRef = useRef(null);
+  let webcamRef = useRef(null);
   const remoteRef = useRef(null);
   const db = getFirestore(initializeApp(firebaseConfig)); // Initialize db here // maybe use useEffect
 
@@ -152,20 +153,40 @@ const VideoChat = () => {
     });
   };
 
+  const handleHangup =  async () => {
+    // Close the Peer Connection
+
+    pc.close(); 
+
+    // Stop local and remote streams
+    localStream.getTracks().forEach((track) => track.stop());
+    remoteStream.getTracks().forEach((track) => track.stop());
+
+    // Set the stream references to null for cleanup
+    setLocalStream(null);
+    setRemoteStream(null);
+
+    // (Optional) Delete the call document from Firestore
+    if (callId) {
+      await deleteDoc(doc(db, "calls", callId));
+      setCallId("");     
+    }
+  }
+
   return (
     <div className="container mx-auto p-6 flex-col ml-5 rounded-xl bg-opacity-80"> 
-      <h1 className="text-3xl font-bold mb-2">Video Chat</h1>
+      <h1 className="text-3xl font-bold mb-2 text-gray-500">Video Chat</h1>
       <button
           onClick={handleWebcamButtonClick}
           disabled={!!localStream}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 mt-4"
+          className="bg-blue-400 hover:bg-blue-500 text-white font-medium py-3 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 mt-4"
         >
           Start webcam
         </button>
         <button
           onClick={handleCallButtonClick}
           disabled={!localStream}
-          className="bg-green-500 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-green-300"
+          className="bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-green-300"
         >
           Create Call (offer)
         </button>
@@ -196,18 +217,21 @@ const VideoChat = () => {
         
       </section>
 
-      <h2 className="text-xl font-bold mb-2">Call code</h2>
-      <input
+      <h2 className="text-lg pl-2 font-bold mb-1 text-white">Call code</h2>
+      <input 
         value={callId}
         onChange={(e) => setCallId(e.target.value)}
-        className="border border-gray-300 rounded-md p-2 mt-2"
+        className="border border-gray-300 rounded-md p-2 m-2"
       />
       <button
         onClick={handleAnswerButtonClick}
         disabled={!callId}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 mt-2"
+        className="bg-blue-400 hover:bg-blue-500 text-white font-medium py-3 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 mt-2"
       >
         Answer
+      </button>
+      <button  className="bg-red-500 hover:bg-red-600 text-white p-3 rounded-md" onClick={handleHangup}>
+        Hang up 
       </button>
 
     </div>

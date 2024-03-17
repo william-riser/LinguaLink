@@ -54,7 +54,7 @@ export const Chat = ({ room }) => {
       <div className="">
       <div className="bg-white shadow-md rounded-lg p-6">
         <div className="header text-center mb-4">
-          <h1 className="text-2xl font-semibold">Welcome to: {room.toUpperCase()}</h1>
+          <h1 className="text-2xl font-semibold text-gray-600">Welcome to: {room.toUpperCase()}</h1>
         </div>
         <div className="messages overflow-y-auto h-[32rem]"> {/* Adjust height as needed */}
           {messages.map((message) => (
@@ -69,7 +69,7 @@ export const Chat = ({ room }) => {
             type="text"
             value={newMessage}
             onChange={(event) => setNewMessage(event.target.value)}
-            className="new-message-input w-4/5 py-3 px-4 border border-gray-300 rounded-md focus:outline-none shadow-sm"
+            className="new-message-input text-gray-600 w-4/5 py-3 px-4 border border-gray-300 rounded-md focus:outline-none shadow-sm"
             placeholder="Type your message here..."
           />
           <button type="submit" className="send-button bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-6 rounded-md ml-2">

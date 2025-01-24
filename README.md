@@ -6,3 +6,4 @@ After choosing a langauge on the home page and selecting chat with people, uers 
 ### AI Chat 
 After choosing a langauge on the home page and selecting chat with AI, users will have a texting interface in which they can converse with the AI in their language of choice in either english or non-english characters. This feature allows those who aren't comfortable witht talking with real people to talk with an AI and experience the same benefits.
 ## How Does This Work?
+   
